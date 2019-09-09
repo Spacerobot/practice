@@ -1,6 +1,12 @@
 #include "vector.h"
+#include <algorithm>
 
-Vector::Vector() : data(new int[Vector::kStartingCapacity]), size(0), capacity(Vector::kStartingCapacity) {
+Vector::Vector() : data(new int[Vector::kDefaultStartingCapacity]), size(0), capacity(Vector::kDefaultStartingCapacity) {
+}
+
+Vector::Vector(std::initializer_list<int> init_list) : data(new int[init_list.size()]), size(init_list.size()), capacity(init_list.size())
+{
+	std::copy(init_list.begin(), init_list.end(), this->data);
 }
 
 Vector::~Vector() {

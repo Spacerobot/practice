@@ -9,7 +9,12 @@ namespace VectorUnitTests
 	TEST_CLASS(VectorUnitTests)
 	{
 	public:
-		
+		TEST_METHOD(TestVectorArrayCtor) {
+			Vector my_vec({ 1 });
+			Assert::AreEqual(1, my_vec[0]);
+		}
+
+
 		TEST_METHOD(TestVectorPush) {
 			Vector my_vec;
 			auto value = 1;
@@ -51,7 +56,7 @@ namespace VectorUnitTests
 				my_vec.PopBack();
 			}
 
-			Assert::AreEqual(my_vec.get_size(), new_size);
+			Assert::AreEqual(new_size, my_vec.get_size());
 		}
 
 	};
