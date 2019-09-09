@@ -1,15 +1,13 @@
 #include "vector.h"
 
-const unsigned int STARTING_CAPACITY = 8;
-
-Vector::Vector() : data(new int[STARTING_CAPACITY]), size(0), capacity(STARTING_CAPACITY) {
+Vector::Vector() : data(new int[Vector::kStartingCapacity]), size(0), capacity(Vector::kStartingCapacity) {
 }
 
 Vector::~Vector() {
 	delete[] data;
 }
 
-void Vector::push(int value) {
+void Vector::PushBack(int value) {
 	int new_size = this->size + 1;
 	if (new_size > this->capacity) {
 		int new_capacity = this->capacity * 2;
@@ -25,13 +23,12 @@ void Vector::push(int value) {
 	this->size = new_size;
 }
 
-int Vector::pop() {
+int Vector::PopBack() {
 	this->size -= 1;
 	return this->data[this->size];
-	// todo reduce capacity when at 1:4 of size:capacity
 }
 
-std::string Vector::str() const {
+std::string Vector::ToString() const {
 	std::string result;
 	for (unsigned int i = 0; i < this->size; ++i) {
 		result += std::to_string(this->data[i]);

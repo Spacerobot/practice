@@ -9,3 +9,8 @@
 *.tlog
 *.exe
 *.ilk
+*.pch
+*.lib
+vscpp/data_structures/.vs/data_structures/v15/Solution.VC.db-shm
+vscpp/data_structures/.vs/
+vscpp/data_structures/Debug/
