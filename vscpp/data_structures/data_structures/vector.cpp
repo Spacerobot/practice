@@ -158,3 +158,8 @@ Vector InsertionSort(const Vector& vec) {
 	}
 	return result;
 }
+
+Vector MergeSort(const Vector & vec)
+{
+	return vec;
+}

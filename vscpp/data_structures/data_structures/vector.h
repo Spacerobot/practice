@@ -41,3 +41,4 @@ private:
 };
 
 Vector InsertionSort(const Vector& vec);
+Vector MergeSort(const Vector& vec);

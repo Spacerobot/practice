@@ -156,9 +156,16 @@ namespace VectorUnitTests
 		TEST_METHOD(TestVectorInsertionSort) {
 			Vector unsorted_vector({ 420, 69, 666 });
 			Vector sorted_vector = InsertionSort(unsorted_vector);
-			auto begin = sorted_vector.get_data();
-			auto end = begin + sorted_vector.get_size();
-			Assert::IsTrue(std::is_sorted(begin, end));
+			Assert::IsTrue(std::is_sorted(sorted_vector.begin(), sorted_vector.end()));
+		}
+
+		// instinct is to write some tests to ensure it handles empty and one length arrays
+		// but there doesn't appear to be a convienient way to write that
+
+		TEST_METHOD(TestVectorMergeSort) {
+			Vector unsorted_vector({ 420, 69, 1917, 666, 5, 4, 3, 2, 1 });
+			Vector sorted_vector = MergeSort(unsorted_vector);
+			Assert::IsTrue(std::is_sorted(sorted_vector.begin(), sorted_vector.end()));
 		}
 	};
 }
