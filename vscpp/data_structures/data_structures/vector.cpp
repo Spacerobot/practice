@@ -237,7 +237,7 @@ Vector HeapSort(const Vector & vec) {
 	// place item towards end
 	for (unsigned int heap_size = result.get_size(); heap_size > 1; --heap_size) {
 		std::swap(result[0], result[heap_size - 1]);
-		SiftDown(result, 0, heap_size);
+		SiftDown(result, 0, heap_size - 1);
 	}
 	return result;
 }
