@@ -1,6 +1,7 @@
 #include "vector.h"
-#include <algorithm>
+#include <algorithm> // copy, 
 #include <cassert>
+#include <vector>
 
 Vector::Vector() : data(new int[Vector::kDefaultStartingCapacity]), size(0), capacity(Vector::kDefaultStartingCapacity) {
 }
@@ -159,7 +160,44 @@ Vector InsertionSort(const Vector& vec) {
 	return result;
 }
 
+// Helper
+Vector Merge(const Vector& left, const Vector& right) {
+	Vector result;
+	auto * l_iter = left.begin();
+	auto * r_iter = right.begin();
+	while (l_iter < left.end() || r_iter < right.end()) {
+		if (r_iter == right.end() || *l_iter < *r_iter) {
+			result.PushBack(*l_iter);
+			++l_iter;
+		}
+		else {
+			result.PushBack(*r_iter);
+			++r_iter;
+		}
+	}
+	return result;
+}
+
 Vector MergeSort(const Vector & vec)
 {
-	return vec;
+	if (vec.get_size() < 2) {
+		return vec;
+	}
+	std::vector<Vector> vectors;
+	for (auto && element : vec) {
+		vectors.push_back(Vector({ element }));
+	}
+	while (vectors.size() > 1) {
+		std::vector<Vector> next_level;
+		for (unsigned int index = 0; index < vectors.size() - 1; index += 2) {
+			next_level.push_back(Merge(vectors[index], vectors[index + 1]));
+		}
+		// as its merged by pairs an odd-sized vector would cause the last element not to be merged
+		if (vectors.size() % 2 != 0) {
+			next_level.push_back(*vectors.rbegin());
+		}
+		vectors = next_level;
+	}
+
+	return vectors[0];
 }
