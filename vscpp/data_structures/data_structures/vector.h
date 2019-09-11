@@ -15,6 +15,8 @@ public:
 	bool operator == (const Vector& rhs) const;
 	bool operator != (const Vector& rhs) const;
 
+	int * get_data();
+
 	unsigned int get_capacity() const;
 	unsigned int get_size() const;
 
@@ -23,7 +25,6 @@ public:
 	void PushBack(int value);
 	int PopBack();
 	
-
 	std::string Stringify() const;
 
 	const unsigned int kDefaultStartingCapacity = 8;
@@ -34,3 +35,5 @@ private:
 
 	void Expand();
 };
+
+Vector InsertionSort(const Vector& vec);

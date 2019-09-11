@@ -2,6 +2,7 @@
 #include "CppUnitTest.h"
 #include "CppUnitTestAssert.h"
 #include "../data_structures/vector.h"
+#include <algorithm> // is_sorted
 
 namespace Microsoft {
 	namespace VisualStudio {
@@ -150,6 +151,14 @@ namespace VectorUnitTests
 			}
 
 			Assert::AreEqual(new_size, my_vec.get_size());
+		}
+
+		TEST_METHOD(TestVectorInsertionSort) {
+			Vector unsorted_vector({ 420, 69, 666 });
+			Vector sorted_vector = InsertionSort(unsorted_vector);
+			auto begin = sorted_vector.get_data();
+			auto end = begin + sorted_vector.get_size();
+			Assert::IsTrue(std::is_sorted(begin, end));
 		}
 	};
 }

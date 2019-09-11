@@ -57,6 +57,11 @@ bool Vector::operator!=(const Vector & rhs) const {
 	return !((*this) == rhs);
 }
 
+int * Vector::get_data()
+{
+	return data;
+}
+
 unsigned int Vector::get_capacity() const {
 	return this->capacity;
 }
@@ -70,7 +75,7 @@ void Vector::Clear() {
 }
 
 void Vector::Insert(int value, unsigned int index) {
-	assert(index < this->size);
+	assert(index <= this->size);
 	int insert_value = value;
 	for (unsigned int i = index; i < this->size; ++i) {
 		int temp = data[i];
@@ -111,4 +116,25 @@ void Vector::Expand() {
 	delete[] this->data;
 	this->data = new_array;
 	this->capacity = new_capacity;
+}
+
+Vector InsertionSort(const Vector& vec) {
+	if (vec.get_size() < 2) {
+		return vec;
+	}
+
+	// seeding the sorted vector
+	Vector result;
+	result.PushBack(vec[0]);
+
+	for (unsigned int unsorted_index = 1; unsorted_index < vec.get_size(); ++unsorted_index) {
+		unsigned int sorted_index = 0;
+		while (sorted_index < result.get_size()) {
+			if (vec[unsorted_index] < result[sorted_index])
+				break;
+			sorted_index++;
+		}
+		result.Insert(vec[unsorted_index], sorted_index);
+	}
+	return result;
 }
