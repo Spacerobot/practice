@@ -202,7 +202,40 @@ Vector MergeSort(const Vector & vec)
 	return vectors[0];
 }
 
+void SiftDown(Vector& heap, int index) {
+	const unsigned int l_child = index * 2 + 1;
+	const unsigned int r_child = index * 2 + 2;
+
+	if (l_child < heap.get_size()) {
+		if (r_child < heap.get_size() && heap[r_child] > heap[l_child]) {
+			if (heap[r_child] > heap[index]) {
+				std::swap(heap[r_child], heap[index]);
+			}
+		}
+		else if (heap[l_child] > heap[index]) {
+			std::swap(heap[l_child], heap[index]);
+		}
+	}
+}
+
+Vector Heapify(const Vector & vec) {
+	Vector heap(vec);
+	for (int index = heap.get_size() / 2; index >= 0; --index) {
+		SiftDown(heap, index);
+	}
+	return heap;
+}
+
 Vector HeapSort(const Vector & vec) {
-	Vector result(vec);
+	if (vec.get_size() < 2) {
+		return vec;
+	}
+	Vector result = Heapify(vec);
+	assert(std::is_heap(result.begin(), result.end()));
+	// place item towards end
+	for (unsigned int heap_size = result.get_size(); heap_size > 1; --heap_size) {
+		std::swap(result[0], result[heap_size - 1]);
+		SiftDown(result, 0);
+	}
 	return result;
 }
