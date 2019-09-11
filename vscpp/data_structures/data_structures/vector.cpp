@@ -205,15 +205,16 @@ Vector MergeSort(const Vector & vec)
 void SiftDown(Vector& heap, int index) {
 	const unsigned int l_child = index * 2 + 1;
 	const unsigned int r_child = index * 2 + 2;
-
 	if (l_child < heap.get_size()) {
 		if (r_child < heap.get_size() && heap[r_child] > heap[l_child]) {
 			if (heap[r_child] > heap[index]) {
 				std::swap(heap[r_child], heap[index]);
+				SiftDown(heap, r_child);
 			}
 		}
 		else if (heap[l_child] > heap[index]) {
 			std::swap(heap[l_child], heap[index]);
+			SiftDown(heap, l_child);
 		}
 	}
 }
