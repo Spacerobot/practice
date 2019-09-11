@@ -194,10 +194,15 @@ Vector MergeSort(const Vector & vec)
 		}
 		// as its merged by pairs an odd-sized vector would cause the last element not to be merged
 		if (vectors.size() % 2 != 0) {
-			next_level.push_back(*vectors.rbegin());
+			*next_level.rbegin() = Merge(*next_level.rbegin(), *vectors.rbegin());
 		}
 		vectors = next_level;
 	}
 
 	return vectors[0];
+}
+
+Vector HeapSort(const Vector & vec) {
+	Vector result(vec);
+	return result;
 }

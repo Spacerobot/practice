@@ -167,5 +167,11 @@ namespace VectorUnitTests
 			Vector sorted_vector = MergeSort(unsorted_vector);
 			Assert::IsTrue(std::is_sorted(sorted_vector.begin(), sorted_vector.end()));
 		}
+
+		TEST_METHOD(TestVectorHeapSort) {
+			Vector unsorted_vector({ 420, 69, 1917, 666, 5, 4, 3, 2, 1 });
+			Vector sorted_vector = HeapSort(unsorted_vector);
+			Assert::IsTrue(std::is_sorted(sorted_vector.begin(), sorted_vector.end()));
+		}
 	};
 }
