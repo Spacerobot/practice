@@ -62,6 +62,26 @@ int * Vector::get_data()
 	return data;
 }
 
+int * Vector::begin()
+{
+	return this->data;
+}
+
+int * Vector::end()
+{
+	return this->data + this->size;
+}
+
+const int * Vector::begin() const
+{
+	return this->data;
+}
+
+const int * Vector::end() const
+{
+	return this->data + this->size;
+}
+
 unsigned int Vector::get_capacity() const {
 	return this->capacity;
 }

@@ -16,6 +16,10 @@ public:
 	bool operator != (const Vector& rhs) const;
 
 	int * get_data();
+	int * begin();
+	int * end();
+	const int * begin() const;
+	const int * end() const;
 
 	unsigned int get_capacity() const;
 	unsigned int get_size() const;
