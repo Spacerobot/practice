@@ -166,7 +166,7 @@ Vector Merge(const Vector& left, const Vector& right) {
 	auto * l_iter = left.begin();
 	auto * r_iter = right.begin();
 	while (l_iter < left.end() || r_iter < right.end()) {
-		if (r_iter == right.end() || *l_iter < *r_iter) {
+		if (l_iter != left.end() && (r_iter == right.end() || *l_iter < *r_iter)) {
 			result.PushBack(*l_iter);
 			++l_iter;
 		}
